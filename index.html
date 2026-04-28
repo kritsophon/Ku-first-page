@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart Building Energy Monitoring</title>
+    <title>KU ENERGY MONITORING</title>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&display=swap" rel="stylesheet">
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+    
     <style>
         * {
             margin: 0;
@@ -21,11 +23,11 @@
             min-height: 100vh;
         }
 
-        /* Header */
+        /* Header ตามแบบร่าง */
         header {
-            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            background: linear-gradient(135deg, #1a2a6c, #1d8552);
             color: white;
-            padding: 2rem 1rem;
+            padding: 2.5rem 1rem;
             text-align: center;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
@@ -34,12 +36,6 @@
             font-size: 2.5rem;
             letter-spacing: 2px;
             text-transform: uppercase;
-        }
-
-        header p {
-            margin-top: 0.5rem;
-            font-weight: 300;
-            opacity: 0.9;
         }
 
         /* Main Content */
@@ -56,21 +52,18 @@
             border-radius: 20px;
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            max-width: 500px;
+            max-width: 600px;
             width: 100%;
             text-align: center;
             transition: transform 0.3s ease;
         }
 
-        .container:hover {
-            transform: translateY(-5px);
-        }
-
-        .building-img {
+        /* ส่วนแสดง 3D Model แทนที่รูปภาพเดิม */
+        model-viewer {
             width: 100%;
-            height: 250px;
-            background: #ddd url('https://cdn.phototourl.com/free/2026-04-28-1313d3ed-d454-41e7-93a6-95ff5c9c9d05.webp') center/cover;
-            /* คุณสามารถเปลี่ยน URL รูปภาพตึกจริงของคุณได้ที่นี่ */
+            height: 400px; /* ปรับความสูงตามต้องการ */
+            background-color: #fafbfc;
+            --poster-color: transparent;
         }
 
         .content {
@@ -79,8 +72,8 @@
 
         .content h2 {
             color: #1a2a6c;
-            margin-bottom: 1rem;
-            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            font-size: 2rem;
         }
 
         .content p {
@@ -89,67 +82,83 @@
             line-height: 1.6;
         }
 
-        /* Button */
+        /* ปุ่มกดไปหน้า Dashboard ตามแบบร่าง */
         .btn-dashboard {
             display: inline-block;
-            background: #b21f1f;
+            background: #1a2a6c;
             color: white;
             text-decoration: none;
-            padding: 1rem 2.5rem;
-            border-radius: 50px;
+            padding: 1rem 3rem;
+            border-radius: 12px;
             font-weight: 600;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(178, 31, 31, 0.3);
+            box-shadow: 0 4px 15px rgba(26, 42, 108, 0.2);
         }
 
         .btn-dashboard:hover {
-            background: #1a2a6c;
-            transform: scale(1.05);
-            box-shadow: 0 6px 20px rgba(26, 42, 108, 0.4);
+            background: #152258;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(26, 42, 108, 0.3);
         }
 
-        /* Footer */
+        /* ลิงก์ Google Sheet ด้านล่างตามแบบร่าง */
+        .sheet-link-section {
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+        .btn-sheet {
+            color: #1d8552;
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 2px solid #1d8552;
+        }
+
         footer {
             text-align: center;
             padding: 1.5rem;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             color: #888;
-        }
-
-        /* Responsive */
-        @media (max-width: 480px) {
-            header h1 { font-size: 1.8rem; }
-            .container { width: 95%; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>Smart Energy Monitoring</h1>
+        <h1>KU ENERGY MONITORING</h1>
         <p>มหาวิทยาลัยเกษตรศาสตร์ | ระบบจัดการพลังงานอัจฉริยะ</p>
     </header>
 
     <main>
         <div class="container">
-            <div class="building-img"></div>
+            <model-viewer 
+                src="building models.glb" 
+                alt="3D Building Model" 
+                auto-rotate 
+                camera-controls 
+                shadow-intensity="1" 
+                touch-action="pan-y">
+            </model-viewer>
             
             <div class="content">
                 <h2>Building 14</h2>
-                <p>ระบบติดตามการใช้ไฟฟ้าแบบ Real-time ของอาคาร 14 <br> ตรวจสอบค่า Voltage, Current, Watt และ Energy</p>
+                <p>คลิกปุ่มด้านล่างเพื่อเข้าสู่ระบบติดตามการใช้ไฟฟ้าแบบ Real-time</p>
                 
-                <a href="https://kritsophon.github.io/Energydashboard/" 
-                   target="_blank" 
-                   class="btn-dashboard">
-                     Dashboard Building 14
+                <a href="https://kritsophon.github.io/Energydashboard/" class="btn-dashboard">
+                    เข้าสู่ Dashboard Building 14 →
                 </a>
+
+                <div class="sheet-link-section">
+                    
+                        
+                    </a>
+                </div>
             </div>
         </div>
     </main>
 
     <footer>
-        &copy; 2026 Smart Energy Monitoring For Faculty Of Engineer Project 
+        &copy; 2026 Smart Energy Monitoring Project | Faculty of Engineering
     </footer>
 
 </body>
